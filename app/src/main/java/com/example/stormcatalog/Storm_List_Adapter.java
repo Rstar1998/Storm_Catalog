@@ -67,8 +67,8 @@ public class Storm_List_Adapter extends RecyclerView.Adapter<Storm_List_Adapter.
         System.out.println(url);
         Picasso.get().load(url).fit()
                 .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
                 .into(holder.image_view);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {

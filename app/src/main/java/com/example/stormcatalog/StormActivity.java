@@ -44,6 +44,8 @@ public class StormActivity extends AppCompatActivity {
     Button track_map;
     Button see_details;
 
+    Button vizualize;
+
 
 
     @Override
@@ -56,14 +58,15 @@ public class StormActivity extends AppCompatActivity {
         season=findViewById(R.id.as_season);
         place =findViewById(R.id.as_place);
         stk =  findViewById(R.id.table_main);
+        vizualize = findViewById(R.id.vizualize);
 
         String storm_id =  (String) getIntent().getStringExtra("storm_id");
         String storm_name = storm_id.split("-")[0];
         String storm_year = storm_id.split("-")[1];
         String url = "https://zoom.earth/assets/images/storms/2048/"+storm_year+"/"+storm_name+".jpg";
         System.out.println(url);
-        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+        Picasso.get().load(url).placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
                 .into(stormImage);
 
         track_map = findViewById(R.id.see_map);
@@ -88,6 +91,20 @@ public class StormActivity extends AppCompatActivity {
             {
                 // Do something
                 Intent intent = new Intent(view.getContext(), StormDetails.class);
+
+                intent.putExtra("storm_id",storm_id);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        vizualize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                // Do something
+                Intent intent = new Intent(view.getContext(), ChartActivity.class);
 
                 intent.putExtra("storm_id",storm_id);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
