@@ -3,11 +3,13 @@ package com.example.stormcatalog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -39,6 +41,9 @@ public class StormActivity extends AppCompatActivity {
 
     TableLayout stk;
 
+    Button track_map;
+    Button see_details;
+
 
 
     @Override
@@ -60,6 +65,37 @@ public class StormActivity extends AppCompatActivity {
         Picasso.get().load(url).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
                 .into(stormImage);
+
+        track_map = findViewById(R.id.see_map);
+        see_details=findViewById(R.id.see_details);
+        track_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                // Do something
+                Intent intent = new Intent(view.getContext(), TrackOnMap.class);
+
+                intent.putExtra("storm_id",storm_id);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        see_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                // Do something
+                Intent intent = new Intent(view.getContext(), StormDetails.class);
+
+                intent.putExtra("storm_id",storm_id);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                view.getContext().startActivity(intent);
+            }
+        });
+
 
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Storm Catalog</string>
     <string name="cyclone_satelline_image">Cyclone satelline image</string>
+    <string name="track_on_map">Track On Map</string>
+    <string name="more_details">More Details</string>
 </resources>
